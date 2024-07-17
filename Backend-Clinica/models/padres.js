@@ -1,36 +1,28 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const pacientes = sequelize.define('pacientes', {
+const padres = sequelize.define('padres', {
   // Definir los atributos del modelo
   nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  sexo: {
+  ocupacion: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
-  fecha_naciemiento: {
+  edad: {
     type: DataTypes.INTEGER,
     allowNull: false,
     },
-    direccion: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    },
-        id_padre: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    },
-            fecha_ingreso: {
+    telefono: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
 }, {
-  tableName: 'pacientes', 
+  tableName: 'padres', 
   timestamps: false,   
 });
 
-module.exports = pacientes;
+module.exports = padres;
