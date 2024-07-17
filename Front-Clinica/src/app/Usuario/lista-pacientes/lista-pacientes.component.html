@@ -24,22 +24,26 @@
   </div>
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
-      @for (item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]; track $index) {
+      @for (item of this.personasTotal(); track $index) {
 
       <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
         <div class="card-container mt-4">
           <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-            CATEGORY
+            Fecha de ingreso {{ item.fecha_ingreso | date : "dd/MM/yyyy" }}
           </h3>
           <h2 class="text-gray-900 title-font text-lg font-medium">
-            The Catalyzer
+            {{ item.nombre }}
           </h2>
-          <p class="mt-1">$16.00</p>
+          <p class="mt-1">
+            Fecha de nacimiento
+            {{ item.fecha_nacimiento | date : "dd/MM/yyyy" }}
+          </p>
         </div>
         <div class="mt-1">
           <button
             type="button"
             class="text-blue-900 bg-white border border-blue-300 focus:outline-none hover:bg-blue-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            routerLink="/inicioClinica/{{ item.id }}"
           >
             Ver historial
           </button>

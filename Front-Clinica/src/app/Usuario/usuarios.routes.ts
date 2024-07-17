@@ -18,7 +18,7 @@ export const routes: Routes = [
     component: ListaPacientesComponent,
   },
   {
-    path: 'paciente/:id',
+    path: ':id',
     component: UsuarioEspecificoComponent,
   },
 ];
