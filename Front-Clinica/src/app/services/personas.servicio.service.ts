@@ -38,4 +38,16 @@ export class PersonasServicioService {
       .post<pacientes[]>(`${this.url}/ingreso`, { paciente, padre })
       .subscribe();
   }
+
+  //obtener paciente por id
+
+  public pacienteId(id: number) {
+    return this.http.get<pacientes>(`${this.url}/tipoPaciente/${id}`);
+  }
+
+  //obtener paciente edad
+
+  public edadPaciente(id: number) {
+    return this.http.get<number>(`${this.url}/edadActual/${id}`);
+  }
 }

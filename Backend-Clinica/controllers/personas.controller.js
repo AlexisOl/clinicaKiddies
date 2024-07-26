@@ -54,9 +54,41 @@ const busquedaPadres = async (req, res) => {
 
 
 
+
+//funcion para obtener a los pacientes especificos
+const tipoPacienteEspecifico = async (req, res) => {
+    const { id } = req.params;
+    try {   
+        console.log(req.body, id, req.params);
+        const paciente = await pool.query("SELECT p.*, pa.nombre as nombre_padre ,pa.telefono, pa.ocupacion, s.tipo  from personas.pacientes p JOIN personas.padres pa ON pa.id = p.id_padre JOIN personas.sexo s ON s.id = p.sexo where p.id = $1 ", [id]);
+        res.status(200).json(paciente.rows[0]);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const edadActual = async (req, res) => {
+    const { id } = req.params
+    try { 
+        const edadAnios = await pool.query("select edadActualPaciente($1)", [id])
+        const edadMeses = await pool.query("select edadActualPaciente($1)", [id])
+        const edadDias = await pool.query("select edadActualPaciente($1)", [id])
+        const edadSemanas = await pool.query("select edadActualPaciente($1)", [id])
+        res.status(200).json(edadAnios.rows[0]);
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+
+
+
 module.exports = {
     obtenerPacientes: obtenerPacientes,
     obtenerSexos: obtenerSexos,
     ingresoPacientes: ingresoPacientes,
-    busquedaPadres: busquedaPadres
+    busquedaPadres: busquedaPadres,
+    tipoPacienteEspecifico: tipoPacienteEspecifico,
+    edadActual: edadActual
 }
