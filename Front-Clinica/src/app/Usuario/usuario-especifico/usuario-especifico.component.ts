@@ -11,20 +11,30 @@ import { initFlowbite } from 'flowbite';
 import { PersonasServicioService } from '../../services/personas.servicio.service';
 import { pacientes } from '../../models/personas';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-especifico',
   standalone: true,
-  imports: [HeaderComponent, DatePipe],
+  imports: [HeaderComponent, DatePipe, RouterLink],
   templateUrl: './usuario-especifico.component.html',
   styleUrl: './usuario-especifico.component.scss',
 })
 export class UsuarioEspecificoComponent implements AfterViewInit, OnInit {
+  // para la vacunas
+  estadoVacunas: boolean = true;
+  // para los medicamentos
+  tomaMedicamento: boolean = false;
   // recibo elementos para el usuario
   pacienteFinal!: undefined | any;
   edad!: undefined | any;
   usuarioId = input<number>(0, { alias: 'id' });
   pacienteActual = inject(PersonasServicioService);
+
+  //cuenta con una cita
+  tienePrimeraCita: undefined | any = this.pacienteActual.tienePrimeraCita(
+    this.usuarioId()
+  );
 
   // para que se ejecute despues de iniciar
   ngAfterViewInit(): void {

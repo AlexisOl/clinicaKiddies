@@ -50,4 +50,10 @@ export class PersonasServicioService {
   public edadPaciente(id: number) {
     return this.http.get<number>(`${this.url}/edadActual/${id}`);
   }
+
+  public tienePrimeraCita(id: number) {
+    return this.http
+      .get<number>(`${this.url}/tienePrimeraCita/${id}`)
+      .subscribe();
+  }
 }

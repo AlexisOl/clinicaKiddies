@@ -10,6 +10,8 @@ router.post(`${ruta}/ingreso`, personasController.ingresoPacientes)
 router.get(`${ruta}/padresTotales`, personasController.busquedaPadres)
 router.get(`${ruta}/tipoPaciente/:id`, personasController.tipoPacienteEspecifico)
 router.get(`${ruta}/edadActual/:id`, personasController.edadActual)
+router.get(`${ruta}/tienePrimeraCita/:id`, personasController.primeraConsulta)
+
 
 
 
