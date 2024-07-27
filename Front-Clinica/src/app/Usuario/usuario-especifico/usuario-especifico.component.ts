@@ -43,6 +43,7 @@ export class UsuarioEspecificoComponent implements AfterViewInit, OnInit {
       .edadPaciente(this.usuarioId())
       .subscribe((edad: number) => {
         this.edad = edad;
+        console.log(this.edad);
       });
     console.log(this.pacienteFinal, this.edad);
   }

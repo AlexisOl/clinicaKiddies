@@ -71,10 +71,10 @@ const edadActual = async (req, res) => {
     const { id } = req.params
     try { 
         const edadAnios = await pool.query("select edadActualPaciente($1)", [id])
-        const edadMeses = await pool.query("select edadActualPaciente($1)", [id])
-        const edadDias = await pool.query("select edadActualPaciente($1)", [id])
-        const edadSemanas = await pool.query("select edadActualPaciente($1)", [id])
-        res.status(200).json(edadAnios.rows[0]);
+        const edadMeses = await pool.query("select edadMesesPaciente($1)", [id])
+        const edadDias = await pool.query("select edadDiasPaciente($1)", [id])
+        const edadSemanas = await pool.query("select edadSemanasPaciente($1)", [id])
+    res.status(200).json({anios: edadAnios.rows[0], meses: edadMeses.rows[0],dias: edadDias.rows[0], semanas: edadSemanas.rows[0] });
     } catch (error) {
         console.log(error);
 
