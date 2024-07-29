@@ -85,7 +85,7 @@ const edadActual = async (req, res) => {
 const primeraConsulta = async (req, res) => {
     const { id } = req.params;
     try {
-        const consulta = await pool.query("SELECT COUNT(*) FROM infogeneral ig where ig.id_paciente = $1", [id])
+        const consulta = await pool.query("SELECT COUNT(*) FROM diagnosticos.infogeneral ig where ig.id_paciente = $1", [id])
         if (consulta) {
     res.status(200).json(consulta.rows[0]);
         } else {
