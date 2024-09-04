@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, input } from '@angular/core';
 import { HeaderComponent } from '../../utils/header/header.component';
 import { UtilidadesService } from '../../services/utilidades.service';
 import { NgOptimizedImage } from '@angular/common';
@@ -8,10 +8,11 @@ import {
   medicamentos,
   vacunas_faltantes,
 } from '../../models/diagnostico';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-primera-cita',
   standalone: true,
-  imports: [HeaderComponent, NgOptimizedImage, FormsModule],
+  imports: [HeaderComponent, NgOptimizedImage, FormsModule, RouterLink],
   templateUrl: './primera-cita.component.html',
   styleUrl: './primera-cita.component.scss',
 })
@@ -30,6 +31,9 @@ export class PrimeraCitaComponent implements OnInit {
   // para las vacunas
   nombreVacuna!: string;
   cantidadVacunas: vacunas_faltantes[] = [];
+
+  //valor del usuario
+  usuarioId = input<number>(0, { alias: 'id' });
 
   onMedicamentoChange(value: string) {
     console.log('Seleccionado:', value);
